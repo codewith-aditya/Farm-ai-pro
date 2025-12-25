@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmAI Pro | Smart Irrigation System</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+                        FARM AI PRO - REAL VERSION CSS
+        ═══════════════════════════════════════════════════════════════ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+        
+        .page {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+                                LANDING PAGE
+        ═══════════════════════════════════════════════════════════════ */
+        
+        .landing {
+            display: flex;
+            height: 100vh;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+        
+        .landing-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .landing-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+        
+        .farm-logo {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .farm-logo i {
+            font-size: 80px;
+            color: #2ecc71;
+        }
+        
+        .farm-title {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .farm-subtitle {
+            font-size: 22px;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-box {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .feature-box i {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-box h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .feature-box p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .landing-right {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+        
+        .welcome-box {
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .welcome-title {
+            font-size: 42px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .welcome-text {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .enter-bubble {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            box-shadow: 0 20px 60px rgba(46, 204, 113, 0.4);
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .enter-bubble:hover {
+            transform: scale(1.1) translateY(-10px);
+            box-shadow: 0 30px 80px rgba(46, 204, 113, 0.6);
+        }
+        
+        .enter-bubble i {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .enter-bubble span {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .admin-access {
+            font-size: 13px;
+            color: #95a5a6;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .admin-access:hover {
+            color: #2ecc71;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+                            DASHBOARD - NO SCROLL
+        ═══════════════════════════════════════════════════════════════ */
+        
+        .dashboard {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            height: 80px;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mini-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .brand-tagline {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .connection-bubble {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #e8f5e9;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2ecc71;
+        }
+        
+        .connection-bubble.offline {
+            background: #ffebee;
+            color: #e74c3c;
+        }
+        
+        .conn-dot {
+            width: 10px;
+            height: 10px;
+            background: #2ecc71;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .action-bubble {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 20px;
+            border: 2px solid transparent;
+        }
+        
+        .action-bubble.admin {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .action-bubble.lang {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .action-bubble:hover {
+            transform: scale(1.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Dashboard Grid - NO SCROLL */
+        .dash-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 450px;
+            gap: 20px;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .dash-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Cards */
+        .farm-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            color: #2ecc71;
+        }
+        
+        /* Stats Grid */
+        .stats-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-bubble {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .stat-bubble:hover {
+            border-color: #2ecc71;
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon-big {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 28px;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+        
+        /* Sensors */
+        .sensors-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .sensor-bubble {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .sensor-bubble:hover {
+            border-color: #2ecc71;
+            transform: scale(1.05);
+        }
+        
+        .sensor-icon {
+            font-size: 36px;
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        
+        .sensor-val {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .sensor-name {
+            font-size: 11px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+        
+        /* Chart */
+        .chart-container {
+            height: 280px;
+        }
+        
+        /* Controls */
+        .control-section {
+            margin-bottom: 20px;
+        }
+        
+        .control-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        
+        .bubble-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .control-bubble {
+            padding: 15px;
+            border-radius: 20px;
+            border: 3px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+        
+        .control-bubble:hover {
+            transform: scale(1.08);
+        }
+        
+        .control-bubble.active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border-color: #2ecc71;
+            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        .control-bubble.start {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border-color: #2ecc71;
+        }
+        
+        .control-bubble.stop {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-color: #e74c3c;
+        }
+        
+        .control-bubble.reset {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border-color: #f39c12;
+        }
+        
+        .threshold-big {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        
+        .slider-custom {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            outline: none;
+            -webkit-appearance: none;
+            margin-bottom: 10px;
+        }
+        
+        .slider-custom::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+        
+        .presets-bubbles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .preset-bubble {
+            padding: 15px 10px;
+            border-radius: 15px;
+            border: 3px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .preset-bubble:hover {
+            border-color: #2ecc71;
+            transform: scale(1.1);
+        }
+        
+        .preset-emoji {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .preset-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .preset-val {
+            font-size: 11px;
+            color: #7f8c8d;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+                                ADMIN PANEL
+        ═══════════════════════════════════════════════════════════════ */
+        
+        .admin-panel {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .admin-top {
+            height: 80px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            border-bottom: 2px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .admin-logo {
+            color: #2ecc71;
+            font-size: 28px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .admin-logo i {
+            font-size: 32px;
+        }
+        
+        .back-bubble {
+            width: 50px;
+            height: 50px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .back-bubble:hover {
+            transform: scale(1.15);
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .admin-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(46, 204, 113, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .admin-box h2 {
+            color: #2ecc71;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-row {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(46, 204, 113, 0.3);
+            border-radius: 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2ecc71;
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .save-bubble {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .save-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+        }
+        
+        .info-text {
+            color: #95a5a6;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .dash-grid {
+                grid-template-columns: 1fr 400px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .landing {
+                flex-direction: column;
+            }
+            
+            .dash-grid {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-compact, .sensors-compact {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════════════════
+                            PAGE 1: LANDING
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="page active" id="landingPage">
+        <div class="landing">
+            <div class="landing-left">
+                <div class="farm-logo">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <h1 class="farm-title">FarmAI Pro</h1>
+                <p class="farm-subtitle">Smart Irrigation System</p>
+                
+                <div class="features">
+                    <div class="feature-box">
+                        <i class="fas fa-brain"></i>
+                        <h4>AI Powered</h4>
+                        <p>Intelligent farming decisions</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-tint"></i>
+                        <h4>Auto Irrigation</h4>
+                        <p>Smart water management</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Real-time Data</h4>
+                        <p>Live sensor monitoring</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Eco Friendly</h4>
+                        <p>Save 60% water</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="landing-right">
+                <div class="welcome-box">
+                    <h2 class="welcome-title">Welcome Farmer!</h2>
+                    <p class="welcome-text">
+                        Monitor and control your farm irrigation system with advanced AI technology. 
+                        Save water, increase yield, and farm smarter.
+                    </p>
+                    
+                    <div class="enter-bubble" onclick="enterDashboard()">
+                        <i class="fas fa-seedling"></i>
+                        <span>START</span>
+                    </div>
+                    
+                    <p class="admin-access" onclick="openAdmin()">
+                        🔐 Administrator Access
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+                            PAGE 2: DASHBOARD
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="dashboardPage">
+        <div class="dashboard">
+            <div class="top-bar">
+                <div class="logo-section">
+                    <div class="mini-logo">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <div>
+                        <div class="brand-name">FarmAI Pro</div>
+                        <div class="brand-tagline">Smart Irrigation</div>
+                    </div>
+                </div>
+                
+                <div class="top-actions">
+                    <div class="connection-bubble" id="connectionStatus">
+                        <div class="conn-dot"></div>
+                        <span id="connText">ESP32 Connected</span>
+                    </div>
+                    <div class="action-bubble lang" onclick="toggleLang()" id="langBtn">
+                        EN
+                    </div>
+                    <div class="action-bubble admin" onclick="openAdmin()">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dash-grid">
+                <!-- Column 1: Stats -->
+                <div class="dash-col">
+                    <div class="farm-card">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Farm Statistics
+                        </h3>
+                        <div class="stats-compact">
+                            <div class="stat-bubble">
+                                <div class="stat-icon-big">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <div class="stat-value" id="totalWater">12.5</div>
+                                <div class="stat-label">Water (Liters)</div>
+                            </div>
+                            <div class="stat-bubble">
+                                <div class="stat-icon-big">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-value" id="uptime">00:00</div>
+                                <div class="stat-label">Uptime</div>
+                            </div>
+                            <div class="stat-bubble">
+                                <div class="stat-icon-big">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="stat-value">62%</div>
+                                <div class="stat-label">Efficiency</div>
+                            </div>
+                            <div class="stat-bubble">
+                                <div class="stat-icon-big">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="stat-value" id="cropName">Wheat</div>
+                                <div class="stat-label">Crop Type</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="farm-card" style="flex: 1;">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Soil Moisture Trend
+                        </h3>
+                        <div class="chart-container">
+                            <canvas id="soilChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Sensors -->
+                <div class="dash-col">
+                    <div class="farm-card" style="flex: 1;">
+                        <h3 class="card-title">
+                            <i class="fas fa-broadcast-tower"></i>
+                            Live Sensors
+                        </h3>
+                        <div class="sensors-compact">
+                            <div class="sensor-bubble">
+                                <i class="fas fa-mountain sensor-icon"></i>
+                                <div class="sensor-val" id="soilVal">645</div>
+                                <div class="sensor-name">Soil Moisture</div>
+                            </div>
+                            <div class="sensor-bubble">
+                                <i class="fas fa-thermometer-half sensor-icon"></i>
+                                <div class="sensor-val" id="tempVal">28.5°C</div>
+                                <div class="sensor-name">Temperature</div>
+                            </div>
+                            <div class="sensor-bubble">
+                                <i class="fas fa-droplet sensor-icon"></i>
+                                <div class="sensor-val" id="humidVal">65%</div>
+                                <div class="sensor-name">Humidity</div>
+                            </div>
+                            <div class="sensor-bubble">
+                                <i class="fas fa-water sensor-icon"></i>
+                                <div class="sensor-val" id="flowVal">5.2</div>
+                                <div class="sensor-name">Flow (L/min)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Controls -->
+                <div class="dash-col">
+                    <div class="farm-card">
+                        <h3 class="card-title">
+                            <i class="fas fa-sliders-h"></i>
+                            System Controls
+                        </h3>
+                        
+                        <!-- Mode -->
+                        <div class="control-section">
+                            <div class="control-title">Mode</div>
+                            <div class="bubble-row">
+                                <div class="control-bubble active" id="btnAuto">
+                                    AUTO
+                                </div>
+                                <div class="control-bubble" id="btnManual">
+                                    MANUAL
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pump -->
+                        <div class="control-section">
+                            <div class="control-title">Pump</div>
+                            <div class="bubble-row">
+                                <div class="control-bubble start" id="btnStart">
+                                    <i class="fas fa-play"></i> START
+                                </div>
+                                <div class="control-bubble stop" id="btnStop">
+                                    <i class="fas fa-stop"></i> STOP
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fault Reset -->
+                        <div class="control-section">
+                            <div class="control-title">Fault Control</div>
+                            <div class="control-bubble reset" id="btnReset" style="width: 100%;">
+                                <i class="fas fa-redo"></i> RESET FAULT
+                            </div>
+                        </div>
+                        
+                        <!-- Threshold -->
+                        <div class="control-section">
+                            <div class="control-title">Moisture Threshold</div>
+                            <div class="threshold-big" id="thresholdDisp">650</div>
+                            <input type="range" class="slider-custom" min="0" max="1023" value="650" id="thresholdSlider">
+                            <div class="slider-labels">
+                                <span>Dry (1023)</span>
+                                <span>Wet (0)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Presets -->
+                        <div class="control-section">
+                            <div class="control-title">Crop Presets</div>
+                            <div class="presets-bubbles">
+                                <div class="preset-bubble" id="presetWheat">
+                                    <span class="preset-emoji">🌾</span>
+                                    <div class="preset-name">Wheat</div>
+                                    <div class="preset-val">650</div>
+                                </div>
+                                <div class="preset-bubble" id="presetRice">
+                                    <span class="preset-emoji">🌾</span>
+                                    <div class="preset-name">Rice</div>
+                                    <div class="preset-val">400</div>
+                                </div>
+                                <div class="preset-bubble" id="presetCotton">
+                                    <span class="preset-emoji">🌱</span>
+                                    <div class="preset-name">Cotton</div>
+                                    <div class="preset-val">700</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+                            PAGE 3: ADMIN PANEL
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="adminPage">
+        <div class="admin-panel">
+            <div class="admin-top">
+                <div class="admin-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    Administrator Panel
+                </div>
+                <div class="back-bubble" onclick="exitAdmin()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="admin-content">
+                <div class="admin-box">
+                    <h2>System Configuration</h2>
+                    
+                    <div class="form-row">
+                        <label class="form-label">ESP32 IP Address</label>
+                        <input type="text" class="form-input" id="espIP" placeholder="192.168.1.100">
+                        <p class="info-text">Enter your ESP32 local IP address</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label">Update Interval (ms)</label>
+                        <input type="number" class="form-input" id="updateInterval" value="1000">
+                        <p class="info-text">Sensor data refresh rate (1000ms = 1 second)</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label">Farm Name</label>
+                        <input type="text" class="form-input" id="farmName" value="Green Valley Farm">
+                        <p class="info-text">Your farm identification name</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label">Default Crop Type</label>
+                        <select class="form-input" id="defaultCrop">
+                            <option value="Wheat">Wheat</option>
+                            <option value="Rice">Rice</option>
+                            <option value="Cotton">Cotton</option>
+                            <option value="Corn">Corn</option>
+                            <option value="Vegetables">Vegetables</option>
+                        </select>
+                    </div>
+                    
+                    <button class="save-bubble" onclick="saveSettings()">
+                        <i class="fas fa-save"></i> SAVE CONFIGURATION
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        //                  FARM AI PRO - JAVASCRIPT
+        // ═══════════════════════════════════════════════════════════════
+        
+        const APP = {
+            config: {
+                espIP: '',
+                updateInterval: 1000,
+                farmName: 'Green Valley Farm',
+                defaultCrop: 'Wheat'
+            },
+            state: {
+                startTime: Date.now(),
+                chart: null,
+                language: 'en',
+                connected: false
+            }
+        };
+        
+        // Load saved config from localStorage
+        function loadConfig() {
+            const saved = localStorage.getItem('farmAIConfig');
+            if (saved) {
+                APP.config = JSON.parse(saved);
+                document.getElementById('cropName').textContent = APP.config.defaultCrop;
+            }
+        }
+        
+        // Save config to localStorage
+        function saveSettings() {
+            APP.config.espIP = document.getElementById('espIP').value;
+            APP.config.updateInterval = parseInt(document.getElementById('updateInterval').value);
+            APP.config.farmName = document.getElementById('farmName').value;
+            APP.config.defaultCrop = document.getElementById('defaultCrop').value;
+            
+            localStorage.setItem('farmAIConfig', JSON.stringify(APP.config));
+            
+            alert('✅ Settings saved successfully!\n\nESP32 IP: ' + APP.config.espIP);
+            exitAdmin();
+        }
+        
+        // Page Navigation
+        function enterDashboard() {
+            document.getElementById('landingPage').classList.remove('active');
+            document.getElementById('dashboardPage').classList.add('active');
+            initDashboard();
+        }
+        
+        function openAdmin() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('adminPage').classList.add('active');
+            
+            // Load current settings
+            document.getElementById('espIP').value = APP.config.espIP;
+            document.getElementById('updateInterval').value = APP.config.updateInterval;
+            document.getElementById('farmName').value = APP.config.farmName;
+            document.getElementById('defaultCrop').value = APP.config.defaultCrop;
+        }
+        
+        function exitAdmin() {
+            document.getElementById('adminPage').classList.remove('active');
+            document.getElementById('dashboardPage').classList.add('active');
+        }
+        
+        // Dashboard Init
+        function initDashboard() {
+            initChart();
+            startDataFetch();
+            
+            setInterval(updateUptime, 1000);
+            setInterval(updateChart, 5000);
+        }
+        
+        // Chart
+        function initChart() {
+            const ctx = document.getElementById('soilChart').getContext('2d');
+            
+            APP.state.chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Soil Moisture',
+                        data: [],
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1023,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateChart() {
+            if (!APP.state.chart) return;
+            
+            const now = new Date();
+            const time = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
+            
+            APP.state.chart.data.labels.push(time);
+            APP.state.chart.data.datasets[0].data.push(parseInt(document.getElementById('soilVal').textContent) || 645);
+            
+            if (APP.state.chart.data.labels.length > 20) {
+                APP.state.chart.data.labels.shift();
+                APP.state.chart.data.datasets[0].data.shift();
+            }
+            
+            APP.state.chart.update();
+        }
+        
+        // Data Fetching
+        function startDataFetch() {
+            if (!APP.config.espIP) {
+                console.log('⚠️ No ESP32 IP configured - running in demo mode');
+                startDemoMode();
+                return;
+            }
+            
+            fetchRealData();
+            setInterval(fetchRealData, APP.config.updateInterval);
+        }
+        
+        async function fetchRealData() {
+            try {
+                const url = `http://${APP.config.espIP}/api/data`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                updateUI(data);
+                setConnected(true);
+                
+            } catch (error) {
+                console.error('Connection error:', error);
+                setConnected(false);
+            }
+        }
+        
+        function updateUI(data) {
+            document.getElementById('soilVal').textContent = data.soil;
+            document.getElementById('tempVal').textContent = data.temp.toFixed(1) + '°C';
+            document.getElementById('humidVal').textContent = data.humid.toFixed(1) + '%';
+            document.getElementById('flowVal').textContent = data.flow.toFixed(1);
+            document.getElementById('totalWater').textContent = data.water.toFixed(1);
+            
+            // Update mode buttons
+            if (data.mode === 'AUTO') {
+                document.getElementById('btnAuto').classList.add('active');
+                document.getElementById('btnManual').classList.remove('active');
+            } else {
+                document.getElementById('btnManual').classList.add('active');
+                document.getElementById('btnAuto').classList.remove('active');
+            }
+        }
+        
+        // Demo Mode
+        let demoData = { soil: 645, temp: 28.5, humid: 65, flow: 5.2, water: 12.5, mode: 'AUTO' };
+        
+        function startDemoMode() {
+            setInterval(() => {
+                demoData.soil += Math.random() * 10 - 5;
+                demoData.soil = Math.max(400, Math.min(800, demoData.soil));
+                
+                demoData.temp += Math.random() * 2 - 1;
+                demoData.temp = Math.max(20, Math.min(35, demoData.temp));
+                
+                demoData.humid += Math.random() * 3 - 1.5;
+                demoData.humid = Math.max(40, Math.min(80, demoData.humid));
+                
+                updateUI(demoData);
+            }, 2000);
+        }
+        
+        function setConnected(status) {
+            APP.state.connected = status;
+            const conn = document.getElementById('connectionStatus');
+            const text = document.getElementById('connText');
+            
+            if (status) {
+                conn.classList.remove('offline');
+                text.textContent = 'ESP32 Connected';
+            } else {
+                conn.classList.add('offline');
+                text.textContent = 'Offline - Demo Mode';
+            }
+        }
+        
+        // Controls
+        async function sendCommand(endpoint, params) {
+            if (!APP.config.espIP) {
+                console.log('Demo mode - command:', endpoint, params);
+                return;
+            }
+            
+            try {
+                const url = `http://${APP.config.espIP}/api/${endpoint}?${params}`;
+                await fetch(url);
+            } catch (error) {
+                console.error('Command error:', error);
+            }
+        }
+        
+        document.getElementById('btnAuto').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('btnManual').classList.remove('active');
+            sendCommand('mode', 'mode=AUTO');
+        });
+        
+        document.getElementById('btnManual').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('btnAuto').classList.remove('active');
+            sendCommand('mode', 'mode=MANUAL');
+        });
+        
+        document.getElementById('btnStart').addEventListener('click', () => {
+            sendCommand('pump', 'state=ON');
+        });
+        
+        document.getElementById('btnStop').addEventListener('click', () => {
+            sendCommand('pump', 'state=OFF');
+        });
+        
+        document.getElementById('btnReset').addEventListener('click', () => {
+            if (confirm('Reset pump fault?')) {
+                sendCommand('reset', 'fault=1');
+                alert('✅ Pump fault reset!');
+            }
+        });
+        
+        document.getElementById('thresholdSlider').addEventListener('input', function(e) {
+            document.getElementById('thresholdDisp').textContent = e.target.value;
+        });
+        
+        document.getElementById('thresholdSlider').addEventListener('change', function(e) {
+            sendCommand('threshold', 'value=' + e.target.value);
+        });
+        
+        document.getElementById('presetWheat').addEventListener('click', () => {
+            document.getElementById('thresholdSlider').value = 650;
+            document.getElementById('thresholdDisp').textContent = '650';
+            document.getElementById('cropName').textContent = 'Wheat';
+            sendCommand('threshold', 'value=650');
+        });
+        
+        document.getElementById('presetRice').addEventListener('click', () => {
+            document.getElementById('thresholdSlider').value = 400;
+            document.getElementById('thresholdDisp').textContent = '400';
+            document.getElementById('cropName').textContent = 'Rice';
+            sendCommand('threshold', 'value=400');
+        });
+        
+        document.getElementById('presetCotton').addEventListener('click', () => {
+            document.getElementById('thresholdSlider').value = 700;
+            document.getElementById('thresholdDisp').textContent = '700';
+            document.getElementById('cropName').textContent = 'Cotton';
+            sendCommand('threshold', 'value=700');
+        });
+        
+        // Uptime
+        function updateUptime() {
+            const elapsed = Date.now() - APP.state.startTime;
+            const hours = Math.floor(elapsed / 3600000);
+            const minutes = Math.floor((elapsed % 3600000) / 60000);
+            
+            document.getElementById('uptime').textContent = 
+                String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0');
+        }
+        
+        // Language Toggle
+        function toggleLang() {
+            APP.state.language = APP.state.language === 'en' ? 'hi' : 'en';
+            document.getElementById('langBtn').textContent = APP.state.language.toUpperCase();
+            // Add translation logic here if needed
+        }
+        
+        // Initialize
+        loadConfig();
+        console.log('🚜 FarmAI Pro Ready!');
+    </script>
+</body>
+</html>
